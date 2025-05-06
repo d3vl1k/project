@@ -94,4 +94,32 @@ void add_new_file(const char* filename, const char* new_file_content) {
     fclose(file); 
 }
 
+void modify_file(const char* filename, const char* target_file, const char* new_content) {
+    FILE *file = fopen(filename, "r"); 
+    if (file == NULL) {
+        perror("Не удалось открыть файл");
+        return;
+    }
+
+    FILE *temp_file = fopen("temp.txt", "w"); 
+    if (temp_file == NULL) {
+        perror("Не удалось создать временный файл");
+        fclose(file);
+        return;
+    }
+
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        if (strcmp(buffer, target_file) == 0) {
+            fprintf(temp_file, "%s\n", new_content); 
+        } else {
+            fputs(buffer, temp_file); 
+        }
+    }
+
+    fclose(file);
+    fclose(temp_file);
+    remove(filename); 
+    rename("temp.txt", filename); 
+}
 
