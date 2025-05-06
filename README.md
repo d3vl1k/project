@@ -44,10 +44,29 @@
 
 ## Filesystem Library
 
-Файл filesystem.c реализует простую файловую систему с базовыми функциями:
+Данный проект предоставляет filesystem.c как библиотеку для работы с файлами в языке C. Все функции объявлены в заголовочном файле filesystem.h.
 
-- create_file
-- write_to_file
-- read_file
-- delete_file
-- file_exists
+### Функции библиотеки:
+
+- FILE* open_or_create_file(const char* filename)  
+  Открывает файл для чтения и записи, если он не существует — создаёт его.
+
+- char* view_file(const char* filename, const char* target_file)  
+  Возвращает содержимое файла в виде строки. Возвращённую строку нужно освободить через free().
+
+- void delete_file(const char* filename, const char* target_file)  
+  Удаляет файл, если имя совпадает с целевым.
+
+- void add_new_file(const char* filename, const char* new_file_content)  
+  Создаёт новый файл и записывает в него переданный текст.
+
+- void modify_file(const char* filename, const char* target_file, const char* new_content)  
+  Полностью заменяет содержимое указанного файла.
+
+### Как подключить к другому проекту:
+
+1. Скопируйте файлы filesystem.c и filesystem.h в ваш проект.
+2. Включите заголовочный файл:
+   ```c
+   #include "filesystem.h"
+
