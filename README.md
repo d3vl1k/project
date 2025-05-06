@@ -41,3 +41,20 @@
 - const char* new_content (строка) - Новое содержимое для этого файла.  
 Возвращает:  
 - void - Ничего не возвращает.
+
+## Filesystem Library
+
+Файл filesystem.c реализует простую файловую систему с базовыми функциями:
+
+- create_file
+- write_to_file
+- read_file
+- delete_file
+- file_exists
+
+Для подключения библиотеки в ваш проект:
+
+1. Скопируйте filesystem.c и filesystem.h в ваш проект
+2. Включите заголовок в коде:
+```c
+#include "filesystem.h"
