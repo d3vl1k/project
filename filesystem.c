@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "filesystem.h"
 
 FILE* open_or_create_file(const char* filename) {
     FILE* file = fopen(filename, "a+"); 
@@ -123,4 +124,41 @@ void modify_file(const char* filename, const char* target_file, const char* new_
     fclose(temp_file);
     remove(filename); 
     rename("temp.txt", filename); 
+}
+
+void create_file(const char *filename) {
+    FILE *fp = fopen(filename, "w");
+    if (fp) fclose(fp);
+}
+
+void write_to_file(const char *filename, const char *content) {
+    FILE *fp = fopen(filename, "a");
+    if (fp) {
+        fputs(content, fp);
+        fclose(fp);
+    }
+}
+
+void read_file(const char *filename) {
+    FILE *fp = fopen(filename, "r");
+    if (!fp) return;
+
+    char ch;
+    while ((ch = fgetc(fp)) != EOF)
+        putchar(ch);
+
+    fclose(fp);
+}
+
+void delete_file(const char *filename) {
+    remove(filename);
+}
+
+int file_exists(const char *filename) {
+    FILE *fp = fopen(filename, "r");
+    if (fp) {
+        fclose(fp);
+        return 1;
+    }
+    return 0;
 }
