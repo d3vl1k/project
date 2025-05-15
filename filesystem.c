@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "filesystem.h"
 
 FILE* open_or_create_file(const char* filename) {
     FILE* file = fopen(filename, "a+"); 
@@ -92,9 +93,6 @@ void add_new_file(const char* filename, const char* new_file_content) {
     fprintf(file, "%s\n", new_file_content); 
     fclose(file); 
 }
-
-#include <stdio.h>
-#include <stdlib.h>
 
 void modify_file(const char* filename, const char* target_file, const char* new_content) {
     FILE *file = fopen(filename, "r"); 
