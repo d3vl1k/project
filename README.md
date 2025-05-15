@@ -41,3 +41,47 @@
 - const char* new_content (строка) - Новое содержимое для этого файла.  
 Возвращает:  
 - void - Ничего не возвращает.
+
+## Filesystem Library
+
+Данный проект предоставляет filesystem.c как библиотеку для работы с файлами в языке C. Все функции объявлены в заголовочном файле filesystem.h.
+
+### Функции библиотеки:
+
+- FILE* open_or_create_file(const char* filename)  
+  Открывает файл для чтения и записи, если он не существует — создаёт его.
+
+- char* view_file(const char* filename, const char* target_file)  
+  Возвращает содержимое файла в виде строки. Возвращённую строку нужно освободить через free().
+
+- void delete_file(const char* filename, const char* target_file)  
+  Удаляет файл, если имя совпадает с целевым.
+
+- void add_new_file(const char* filename, const char* new_file_content)  
+  Создаёт новый файл и записывает в него переданный текст.
+
+- void modify_file(const char* filename, const char* target_file, const char* new_content)  
+  Полностью заменяет содержимое указанного файла.
+
+### Как подключить к другому проекту:
+
+1. Скопируйте файлы filesystem.c и filesystem.h в ваш проект.
+2. Включите заголовочный файл:
+   ```c
+   #include "filesystem.h"
+
+# Project Kids — Файловая система
+
+## Использование
+
+Команды вводятся в интерактивной командной строке. Примеры:
+
+### Создание файла
+создать test.txt
+### Удаление файла
+удалить test.txt
+### Изменение файла (добавление текста)
+изменить test.txt Привет, мир!
+### Просмотр содержимого файла
+посмотреть test.txt
+< Привет, мир!
